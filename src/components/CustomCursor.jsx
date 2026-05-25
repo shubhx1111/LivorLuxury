@@ -5,8 +5,35 @@ import './CustomCursor.css';
 const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
+    // Check if the device has hover capability and a fine pointer (desktop standard)
+    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+    setEnabled(mediaQuery.matches);
+
+    const handleMediaQueryChange = (e) => {
+      setEnabled(e.matches);
+    };
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleMediaQueryChange);
+    } else {
+      mediaQuery.addListener(handleMediaQueryChange);
+    }
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', handleMediaQueryChange);
+      } else {
+        mediaQuery.removeListener(handleMediaQueryChange);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
+
     const updateMousePosition = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -32,7 +59,7 @@ const CustomCursor = () => {
       window.removeEventListener('mousemove', updateMousePosition);
       window.removeEventListener('mouseover', handleMouseOver);
     };
-  }, []);
+  }, [enabled]);
 
   const variants = {
     default: {
@@ -73,6 +100,8 @@ const CustomCursor = () => {
       opacity: 0
     }
   };
+
+  if (!enabled) return null;
 
   return (
     <>

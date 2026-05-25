@@ -22,11 +22,16 @@ body {
   font-family: var(--font-body);
   line-height: 1.6;
   overflow-x: hidden;
-  cursor: none; /* Custom cursor */
 }
 
-a, button {
-  cursor: none; /* Custom cursor over interactables */
+/* Hide standard cursor only on devices with fine pointer & hover support */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
+  a, button, .hover-target {
+    cursor: none;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -125,4 +130,17 @@ a:hover {
 /* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* Mobile & Tablet Responsive Adaptations */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.2rem;
+  }
+
+  .btn {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
 }

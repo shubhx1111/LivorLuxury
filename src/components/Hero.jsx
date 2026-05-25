@@ -44,10 +44,15 @@ const Hero = () => {
           animate="visible"
           className="hero-title"
         >
-          {title.split('').map((char, index) => (
-            <motion.span key={index} variants={letterVariants}>
-              {char === " " ? "\u00A0" : char}
-            </motion.span>
+          {title.split(' ').map((word, wordIdx) => (
+            <span key={wordIdx} className="hero-title-word">
+              {word.split('').map((char, charIdx) => (
+                <motion.span key={charIdx} variants={letterVariants}>
+                  {char}
+                </motion.span>
+              ))}
+              {wordIdx < title.split(' ').length - 1 && <span className="hero-title-space">&nbsp;</span>}
+            </span>
           ))}
         </motion.h1>
         

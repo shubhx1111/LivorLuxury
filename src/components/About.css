@@ -38,7 +38,7 @@
 }
 
 .about-title {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   color: var(--color-primary);
   margin-bottom: 1rem;
 }

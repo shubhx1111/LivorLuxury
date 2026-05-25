@@ -95,6 +95,9 @@ const Products = () => {
                     <button className="btn btn-solid hover-target add-btn">
                       <ShoppingBag size={20} style={{marginRight: '10px'}}/> Add to Cart
                     </button>
+                    <button className="btn hover-target mobile-only-btn">
+                      <Eye size={18} style={{marginRight: '8px'}}/> View Details
+                    </button>
                   </div>
                 </motion.div>
               </div>

@@ -19,6 +19,12 @@
   background-blend-mode: overlay;
 }
 
+@media (max-width: 1024px) {
+  .hero-bg {
+    background-attachment: scroll; /* Optimize repainting lag on mobile browsers */
+  }
+}
+
 .hero-orb {
   position: absolute;
   border-radius: 50%;
@@ -72,25 +78,36 @@
 }
 
 .hero-subtitle {
-  font-size: 1.2rem;
+  font-size: clamp(0.9rem, 3vw, 1.2rem);
   color: var(--color-primary);
   text-transform: uppercase;
   margin-bottom: 1.5rem;
-  letter-spacing: 8px; /* Animated via framer-motion */
+  letter-spacing: clamp(4px, 1.5vw, 8px); /* Animated via framer-motion */
 }
 
 .hero-title {
-  font-size: 6rem;
+  font-size: clamp(2.5rem, 8vw, 6rem);
   font-weight: 400;
   margin-bottom: 1.5rem;
   background: linear-gradient(to right, #fff, var(--color-primary));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  line-height: 1.1;
+  line-height: 1.2;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   text-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  padding: 0 1rem;
+}
+
+.hero-title-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.hero-title-space {
+  display: inline-block;
 }
 
 .hero-title span {
@@ -118,8 +135,23 @@
 }
 
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: 3.5rem;
-    flex-wrap: wrap;
+  .hero-orb {
+    filter: blur(40px); /* Lower blur radius is much faster to render on mobile GPUs */
+  }
+  .orb-1 {
+    width: 60vw;
+    height: 60vw;
+  }
+  .orb-2 {
+    width: 50vw;
+    height: 50vw;
+  }
+  .hero-text {
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    padding: 0 1rem;
+  }
+  .scroll-indicator {
+    bottom: 20px;
   }
 }

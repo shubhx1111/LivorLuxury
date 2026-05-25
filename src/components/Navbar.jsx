@@ -3,6 +3,29 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ShoppingBag } from 'lucide-react';
 import './Navbar.css';
 
+const menuContainerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const menuItemVariants = {
+  hidden: { opacity: 0, y: 25 },
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { 
+      duration: 0.5, 
+      ease: [0.215, 0.61, 0.355, 1] 
+    } 
+  }
+};
+
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -14,6 +37,18 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Lock body scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <motion.nav 
@@ -47,18 +82,34 @@ const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: '100vh' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="mobile-menu glass-panel"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            className="mobile-menu"
           >
-            <div className="mobile-menu-links">
-              <a href="#home" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
-              <a href="#collection" onClick={() => setIsMobileMenuOpen(false)}>Collection</a>
-              <a href="#about" onClick={() => setIsMobileMenuOpen(false)}>Our Story</a>
-              <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
-            </div>
+            <motion.div 
+              variants={menuContainerVariants}
+              initial="hidden"
+              animate="show"
+              className="mobile-menu-links"
+            >
+              {[
+                { name: 'Home', href: '#home' },
+                { name: 'Collection', href: '#collection' },
+                { name: 'Our Story', href: '#about' },
+                { name: 'Contact', href: '#contact' }
+              ].map((link, index) => (
+                <motion.a 
+                  key={index} 
+                  variants={menuItemVariants}
+                  href={link.href} 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </motion.a>
+              ))}
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

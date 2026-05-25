@@ -19,6 +19,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  z-index: 1000;
 }
 
 .nav-logo a {
@@ -74,41 +76,47 @@
 
 .mobile-menu-btn {
   display: none;
+  z-index: 1001;
 }
 
 .mobile-menu {
-  position: absolute;
-  top: 100%;
+  position: fixed;
+  top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
-  border-top: none;
-  background: rgba(5, 5, 5, 0.95);
-  backdrop-filter: blur(20px);
+  background: rgba(5, 5, 5, 0.98);
+  backdrop-filter: blur(25px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mobile-menu-links {
   display: flex;
   flex-direction: column;
-  padding: 2rem 0;
-  height: 100%;
   align-items: center;
-  justify-content: flex-start;
-  gap: 1rem;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
 }
 
 .mobile-menu a {
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  font-size: 1.2rem;
+  letter-spacing: 4px;
+  font-size: 1.5rem;
   color: var(--color-text);
   position: relative;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
+  font-family: var(--font-heading);
 }
 
 .mobile-menu a:hover {
   color: var(--color-primary);
+  transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
