@@ -4,6 +4,26 @@ import { ShoppingBag, Eye } from 'lucide-react';
 import axios from 'axios';
 import './Products.css';
 
+// Import images so Vite bundles and resolves them relatively for any deployment domain/subdirectory
+import darkDemonImg from '../assets/dark-demon.png';
+import medusaImg from '../assets/medusa.png';
+import skullImg from '../assets/skull.png';
+import peppabellImg from '../assets/peppabell.png';
+
+const getProductImage = (imagePath) => {
+  if (!imagePath || typeof imagePath !== 'string') return imagePath;
+  if (!imagePath.startsWith('/assets/')) return imagePath;
+  
+  // Extract filename
+  const filename = imagePath.split('/').pop().toLowerCase();
+  if (filename.includes('dark-demon')) return darkDemonImg;
+  if (filename.includes('medusa')) return medusaImg;
+  if (filename.includes('skull')) return skullImg;
+  if (filename.includes('peppabell')) return peppabellImg;
+  
+  return imagePath;
+};
+
 const fallbackProducts = [
   { _id: '1', name: 'Dark Demon', price: 1899, description: 'An alluring blend of dark spices and deep woods, designed for the bold and fearless. The essence of the night captured in a bottle.', image: '/assets/dark-demon.png' },
   { _id: '2', name: 'Medusa', price: 1799, description: 'A captivating fragrance with venomous floral notes that mesmerize and enchant. A gaze into the abyss of luxury and untamed beauty.', image: '/assets/medusa.png' },
@@ -56,7 +76,7 @@ const Products = () => {
                   className="product-image-side"
                 >
                   <div className="product-image-container glass-panel hover-target">
-                    <img src={product.image} alt={product.name} className="product-image" />
+                    <img src={getProductImage(product.image)} alt={product.name} className="product-image" />
                     <div className="product-overlay">
                       <button className="btn btn-solid quick-view hover-target">
                         <Eye size={18} style={{marginRight: '8px'}}/> View Details
