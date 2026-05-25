@@ -1,8 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { ShoppingBag, Eye } from 'lucide-react';
 import axios from 'axios';
 import './Products.css';
+
+// 3D Card Tilt Component
+const ProductCard3D = ({ children, className }) => {
+  const x = useMotionValue(0.5);
+  const y = useMotionValue(0.5);
+
+  const rotateX = useSpring(useTransform(y, [0, 1], [15, -15]), { stiffness: 220, damping: 25 });
+  const rotateY = useSpring(useTransform(x, [0, 1], [-15, 15]), { stiffness: 220, damping: 25 });
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    x.set(mouseX / width);
+    y.set(mouseY / height);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0.5);
+    y.set(0.5);
+  };
+
+  return (
+    <motion.div
+      className={className}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: 'preserve-3d',
+        perspective: '1000px',
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 // Import images so Vite bundles and resolves them relatively for any deployment domain/subdirectory
 import darkDemonImg from '../assets/dark-demon.png';
@@ -75,14 +115,14 @@ const Products = () => {
                   transition={{ duration: 0.8 }}
                   className="product-image-side"
                 >
-                  <div className="product-image-container glass-panel hover-target">
+                  <ProductCard3D className="product-image-container glass-panel hover-target">
                     <img src={getProductImage(product.image)} alt={product.name} className="product-image" />
                     <div className="product-overlay">
                       <button className="btn btn-solid quick-view hover-target">
                         <Eye size={18} style={{marginRight: '8px'}}/> View Details
                       </button>
                     </div>
-                  </div>
+                  </ProductCard3D>
                 </motion.div>
                 
                 <motion.div 

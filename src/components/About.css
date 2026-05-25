@@ -1,8 +1,9 @@
 .about-section {
   padding: 8rem 0;
-  background-color: var(--color-surface);
+  background-color: transparent;
   position: relative;
   overflow: hidden;
+  border-top: 1px solid rgba(212, 175, 55, 0.05);
 }
 
 .about-container {
@@ -23,6 +24,8 @@
   border-radius: 8px;
   overflow: hidden;
   background: url('https://images.unsplash.com/photo-1590736704728-f4730bb30770?q=80&w=2071&auto=format&fit=crop') center/cover;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
 }
 
 .image-overlay {

@@ -1,10 +1,10 @@
 :root {
-  --color-bg: #050505;
+  --color-bg: #070312; /* Luxurious midnight indigo */
   --color-text: #f5f5f5;
   --color-primary: #d4af37; /* Gold */
   --color-primary-dark: #aa8c2c;
-  --color-surface: #141414;
-  --color-surface-light: #222222;
+  --color-surface: rgba(20, 10, 35, 0.45);
+  --color-surface-light: rgba(255, 255, 255, 0.08);
   
   --font-heading: 'Cinzel', serif;
   --font-body: 'Inter', sans-serif;
@@ -17,11 +17,15 @@
 }
 
 body {
-  background-color: var(--color-bg);
+  background: linear-gradient(rgba(10, 5, 25, 0.45), rgba(5, 2, 15, 0.75)),
+    url('./assets/allFour.jpeg') center/cover no-repeat fixed;
   color: var(--color-text);
   font-family: var(--font-body);
   line-height: 1.6;
   overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Hide standard cursor only on devices with fine pointer & hover support */

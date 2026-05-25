@@ -25,8 +25,8 @@ const Footer = () => {
 
         <div className="footer-contact">
           <h3>Contact Us</h3>
-          <p><Mail size={18} /> info@livorluxury.com</p>
-          <p><MapPin size={18} /> 123 Luxury Avenue, Paris, France</p>
+          <p><Mail size={18} /> livorluxuryperfumes@gmail.com</p>
+          <p><MapPin size={18} /> 17/1 Industrial Area Hatod, Indore - 453111</p>
         </div>
       </div>
       
