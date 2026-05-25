@@ -194,6 +194,16 @@
     gap: 6rem;
   }
 
+  .product-image-side {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+
+  .product-info-side {
+    width: 100%;
+  }
+
   .product-image-container {
     padding-top: 100%;
   }
@@ -216,5 +226,37 @@
 
   .product-actions-large .btn {
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-name-large {
+    font-size: 2.2rem;
+  }
+
+  .product-desc-large {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .product-notes {
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+  }
+
+  .note-item {
+    flex-direction: column;
+    gap: 0.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .note-label {
+    min-width: auto;
+    font-size: 0.75rem;
+  }
+
+  .note-value {
+    font-size: 0.85rem;
   }
 }

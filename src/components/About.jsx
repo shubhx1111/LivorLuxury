@@ -9,7 +9,7 @@ const About = () => {
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.8 }}
           className="about-image-wrapper"
         >
@@ -22,7 +22,7 @@ const About = () => {
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="about-content"
         >

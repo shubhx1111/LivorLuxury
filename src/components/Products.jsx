@@ -54,7 +54,7 @@ const Products = () => {
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.8 }}
           className="section-header"
         >
@@ -71,7 +71,7 @@ const Products = () => {
                 <motion.div 
                   initial={{ opacity: 0, x: isEven ? -50 : 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
+                  viewport={{ once: true, amount: 0.15 }}
                   transition={{ duration: 0.8 }}
                   className="product-image-side"
                 >
@@ -88,7 +88,7 @@ const Products = () => {
                 <motion.div 
                   initial={{ opacity: 0, x: isEven ? 50 : -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
+                  viewport={{ once: true, amount: 0.15 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="product-info-side"
                 >

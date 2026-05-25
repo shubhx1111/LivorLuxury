@@ -1,6 +1,7 @@
 .hero {
   position: relative;
   height: 100vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -153,5 +154,19 @@
   }
   .scroll-indicator {
     bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(1.8rem, 10vw, 3rem);
+  }
+  .hero-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 4px !important; /* Cap letter spacing on narrow devices */
+  }
+  .hero-text {
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
   }
 }
